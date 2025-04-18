@@ -1,0 +1,233 @@
+---
+title: "SATOM Brand Guidelines"
+format: 
+  html:
+    theme: _brand.yml
+    toc: true
+    toc-depth: 3
+execute:
+  echo: false
+  warning: false
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+library(ggplot2)
+library(grid)
+library(gridExtra)
+library(htmltools)
+library(png)
+```
+
+## Logo
+
+Our logo represents the SATOM brand identity and should be used consistently across all materials.
+
+```{r logo-display, fig.align='center', out.width="70%"}
+# Display the main logo
+knitr::include_graphics("logo1.png")
+```
+
+### Logo Variations
+
+```{r logo-variations, fig.align='center', out.width="20%"}
+# Display the secondary logo
+knitr::include_graphics("logo2.png")
+```
+
+## Color Palette
+
+Our brand colors convey our identity and should be consistently applied across all communications.
+
+```{r color-palette, fig.height=6, fig.width=10, fig.align='center'}
+# Define the color palette
+colors <- c(
+  "awanokuni" = "#E3EBF3",
+  "samue" = "#7093BF",
+  "noren" = "#375A9D",
+  "hakujiiro" = "#E9EAEB",
+  "ginhakushoku" = "#D3D3D2",
+  "gosuiro" = "#323172",
+  "sitagoshirae" = "#E7D3CF",
+  "gochiso" = "#CB6874",
+  "hashi" = "#a47d59",
+  "urahairo" = "#97CEA1"
+)
+
+# Create HTML output for color swatches directly
+html_content <- '<div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">'
+
+for (i in seq_along(colors)) {
+  name <- names(colors)[i]
+  hex <- colors[i]
+  
+  swatch <- paste0(
+    '<div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 20px;">',
+    '<div style="width: 100px; height: 100px; border-radius: 50%; background-color: ', hex, '; box-shadow: 0 2px 5px rgba(0,0,0,0.1);"></div>',
+    '<div style="margin-top: 10px; text-align: center;">',
+    '<div style="font-family: \'Alata\', sans-serif; font-weight: bold;">', name, '</div>',
+    '<div style="font-family: \'IBM Plex Mono\', monospace; font-size: 0.9em;">', hex, '</div>',
+    '</div></div>'
+  )
+  
+  html_content <- paste0(html_content, swatch)
+}
+
+html_content <- paste0(html_content, '</div>')
+
+# Output the HTML
+htmltools::HTML(html_content)
+```
+
+
+
+## Typography
+
+Our typography system consists of three complementary fonts that should be used consistently.
+
+### Base Font: NOTO Sans
+
+NOTO Sans is our primary font for body text and general content.
+
+```{r noto-sans, results='asis', echo=FALSE}
+html_content <- '
+<div style="font-family: \'Noto Sans\', sans-serif; padding: 20px; background-color: #f8f9fa; border-radius: 5px; margin-bottom: 20px;">
+  <p style="font-size: 14px; margin-bottom: 10px;">NOTO Sans Regular (14px)</p>
+  <p style="font-size: 14px;">The quick brown fox jumps over the lazy dog. 1234567890</p>
+  
+  <p style="font-size: 14px; font-weight: bold; margin-bottom: 10px; margin-top: 20px;">NOTO Sans Bold (14px)</p>
+  <p style="font-size: 14px; font-weight: bold;">The quick brown fox jumps over the lazy dog. 1234567890</p>
+  
+  <p style="font-size: 14px; font-style: italic; margin-bottom: 10px; margin-top: 20px;">NOTO Sans Italic (14px)</p>
+  <p style="font-size: 14px; font-style: italic;">The quick brown fox jumps over the lazy dog. 1234567890</p>
+</div>
+'
+htmltools::HTML(html_content)
+```
+
+### Heading Font: Alata
+
+Alata is used for headings and titles to create visual hierarchy.
+
+```{r alata, results='asis', echo=FALSE}
+html_content <- '
+<div style="font-family: \'Alata\', sans-serif; padding: 20px; background-color: #f8f9fa; border-radius: 5px; margin-bottom: 20px;">
+  <p style="font-size: 24px; margin-bottom: 10px;">Alata (24px)</p>
+  <p style="font-size: 24px;">The quick brown fox jumps over the lazy dog. 1234567890</p>
+  
+  <p style="font-size: 18px; margin-bottom: 10px; margin-top: 20px;">Alata (18px)</p>
+  <p style="font-size: 18px;">The quick brown fox jumps over the lazy dog. 1234567890</p>
+</div>
+'
+htmltools::HTML(html_content)
+```
+
+### Monospace Font: IBM Plex Mono
+
+IBM Plex Mono is used for code blocks, technical content, and data displays.
+
+```{r ibm-plex, results='asis', echo=FALSE}
+html_content <- '
+<div style="font-family: \'IBM Plex Mono\', monospace; padding: 20px; background-color: #f8f9fa; border-radius: 5px;">
+  <p style="font-size: 14px; margin-bottom: 10px;">IBM Plex Mono Regular (14px)</p>
+  <p style="font-size: 14px;">The quick brown fox jumps over the lazy dog. 1234567890</p>
+  
+  <p style="font-size: 14px; font-weight: bold; margin-bottom: 10px; margin-top: 20px;">IBM Plex Mono Bold (14px)</p>
+  <p style="font-size: 14px; font-weight: bold;">The quick brown fox jumps over the lazy dog. 1234567890</p>
+</div>
+'
+htmltools::HTML(html_content)
+```
+
+## Usage Guidelines
+
+### Logo Usage
+
+- Always maintain clear space around the logo
+- Do not stretch, distort, or alter the logo colors
+- Use the appropriate logo version based on background colors
+- Minimum size: 30px height for digital use
+
+### Color Usage
+
+- Primary colors (noren, samue) should be dominant in all communications
+- Secondary colors should be used as accents
+- Ensure sufficient contrast for accessibility
+
+### Typography Guidelines
+
+- Use Noto Sans for all body text (recommended size: 14-16px)
+- Use Alata for headings (H1: 24-32px, H2: 20-24px, H3: 18-20px)
+- Use IBM Plex Mono for code snippets and technical data
+
+## Document Examples
+
+### Presentation Slide
+
+```{r slide-example, fig.height=4, fig.width=7, fig.align='center'}
+# Create a simple presentation slide example
+grid.newpage()
+
+# Create background
+grid.rect(
+  width = 1, height = 1,
+  gp = gpar(fill = colors["hakujiiro"], col = NA)
+)
+
+# Header bar
+grid.rect(
+  x = 0.5, y = 0.9, 
+  width = 1, height = 0.1,
+  gp = gpar(fill = colors["noren"], col = NA)
+)
+
+# Title
+grid.text(
+  "Presentation Title",
+  x = 0.1, y = 0.9, just = "left",
+  gp = gpar(fontsize = 18, col = "white", fontfamily = "Alata")
+)
+
+# Logo - replaced rectangle with image
+logo <- readPNG("google_workspace_logo-color.png")  # Read the PNG file
+grid.raster(logo,
+  x = 0.9, y = 0.9, 
+  width = 0.1, height = 0.08,
+  just = "center"
+)
+
+# Content area - Title
+grid.text(
+  "Section Heading",
+  x = 0.1, y = 0.75, just = "left",
+  gp = gpar(fontsize = 16, fontfamily = "Alata", col = colors["gosuiro"])
+)
+
+# Content area - Bullet points
+bullets <- c("First key point with important information", 
+             "Second point explaining concept", 
+             "Third point with supporting data")
+
+for (i in 1:length(bullets)) {
+  grid.text(
+    paste0("• ", bullets[i]),
+    x = 0.15, y = 0.7 - (i * 0.08), just = "left",
+    gp = gpar(fontsize = 12, fontfamily = "Noto Sans")
+  )
+}
+
+# Footer
+grid.rect(
+  x = 0.5, y = 0.05, 
+  width = 1, height = 0.03,
+  gp = gpar(fill = colors["samue"], col = NA)
+)
+```
+
+### Business Card Design
+
+```{r business-card, fig.align='center', out.width="100%"}
+# Display the secondary logo
+knitr::include_graphics("satom-business-card.png")
+```
+
